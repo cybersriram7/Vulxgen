@@ -43,7 +43,7 @@ def banner():
 │                                                          │
 │        VLUXGEN v2.0  |  Security Learning Toolkit        │
 │        Recon • Wordlist • Crawl • Safe Testing           │
-│                                                          │
+│                                 ----> CYBER PASANGA      │
 └──────────────────────────────────────────────────────────┘
 """ + RESET)
 
