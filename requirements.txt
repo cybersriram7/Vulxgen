@@ -1,0 +1,7 @@
+requests
+beautifulsoup4
+aiohttp
+lxml
+colorama
+fake-useragent
+rich
