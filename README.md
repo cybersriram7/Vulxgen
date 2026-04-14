@@ -1,100 +1,105 @@
-VLUXGEN v3.0
+# 🛡️ VLUXGEN v3.0
+### Professional CLI Security Learning Toolkit
+**Developed by Sriram (Cyber Pasanga)**
 
-Professional CLI Security Learning Toolkit
+[![Version](https://img.shields.io/badge/Version-3.0--Pro-blue.svg)](https://github.com/cybersriram7/Vulxgen)
+[![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-Educational-red.svg)](https://github.com/cybersriram7/Vulxgen)
 
-👨‍💻 Developed by Sriram (Cyber Pasanga)
-⚡ Recon • Automation • Safe Vulnerability Testing
+---
 
-📌 Repository
+## 📖 Overview
+**VLUXGEN v3.0** is an all-in-one Cybersecurity Reconnaissance and Automation framework built for ethical hackers, bug bounty hunters, and security students. It combines 14 powerful modules into a single, intuitive CLI interface to streamline the reconnaissance phase of security testing.
 
-👉 https://github.com/cybersriram7/Vulxgen
+> [!IMPORTANT]
+> This tool is strictly for **educational purposes** and **authorized security testing** only. Never use it on targets without explicit permission.
 
-📖 Overview
+---
 
-VLUXGEN v3.0 is a powerful all-in-one CLI toolkit for:
+## 🚀 Key Features
 
-Ethical Hackers 🧑‍💻
-Bug Bounty Hunters 🐞
-Cybersecurity Students 🎓
+| Tool | Category | Description |
+| :--- | :--- | :--- |
+| **01** | **Wordlist** | Customizable wordlist generator for brute-forcing. |
+| **02** | **Crawler** | Advanced website link and endpoint miner. |
+| **03** | **Params** | High-speed parameter finder from web apps. |
+| **04** | **Dorks** | Automated Google Dork generator for data leaks. |
+| **05** | **XSS Gen** | Educational XSS payload generator. |
+| **06** | **SQLi Gen** | Educational SQL injection payload generator. |
+| **07** | **Subdomains**| DNS-based subdomain enumerator. |
+| **08** | **WAF Check** | Identifies Firewalls (Cloudflare, Akamai, etc.). |
+| **09** | **Scanner** | Nmap-style TCP port scanner (1-1000). |
+| **10** | **Auditor** | Security Header auditor (CSP, XFO, HSTS). |
+| **11** | **XSS Pro** | Master XSS reflection context analyzer. |
+| **12** | **Redirect** | Open Redirect vulnerability scanner. |
+| **13** | **Dir Brute** | **[NEW]** Directory and hidden file brute-forcer. |
+| **14** | **Reverse IP**| **[NEW]** Find domains hosted on the same server. |
 
-It provides automation + recon + safe testing tools in a single interface.
+---
 
-🚀 Features
-🔐 Wordlist Generator
-🌐 Advanced Web Crawler
-🔍 Parameter Finder
-🧠 Google Dork Generator
-💉 XSS Payload Generator (Safe)
-🧬 SQL Injection Payload Generator (Safe)
-🌎 Subdomain Finder
-🛡️ WAF Detector
-⚡ Port Scanner (Nmap-style)
-🔒 Security Header Auditor
-🔥 Master XSS Analyzer
-🔁 Open Redirect Scanner
-📂 Directory Brute Forcer [NEW]
-🌎 Reverse IP Lookup [NEW]
+## ⚙️ Installation Guide
 
-⚙️ Installation
-1️⃣ Clone Repository
-git clone https://github.com/cybersriram7/Vulxgen.git
-cd Vulxgen
-2️⃣ Install (Automated)
-chmod +x install.sh
-./install.sh
-3️⃣ Manual Install
-pip install -r requirements.txt
-▶️ Run Tool
+### ⚡ Option 1: One-Liner (Fastest)
+Copy and paste this single command to clone and install everything:
+```bash
+git clone https://github.com/cybersriram7/Vulxgen.git && cd Vulxgen && chmod +x install.sh && ./install.sh
+```
+
+### 🛠️ Option 2: Step-by-Step Manual
+If you prefer to install manually, follow these steps:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/cybersriram7/Vulxgen.git
+   ```
+2. **Enter the directory**:
+   ```bash
+   cd Vulxgen
+   ```
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Grant execution permissions**:
+   ```bash
+   chmod +x vluxgen.py
+   ```
+
+---
+
+## ▶️ Usage Steps
+
+To launch the tool, run:
+```bash
 python3 vluxgen.py
+```
 
-📋 Menu
-1 → Wordlist Generator
-2 → Website Crawler
-3 → Parameter Finder
-4 → Google Dork Helper
-5 → XSS Payload Generator
-6 → SQLI Payload Generator
-7 → Subdomain Finder
-8 → WAF Detector
-9 → Port Scanner
-10 → Security Header Auditor
-11 → Master XSS Analyzer
-12 → Open Redirect Scanner
-13 → Directory Brute Forcer
-14 → Reverse IP Lookup
-0 → Exit
+### 📂 Detailed Example: Directory Brute Forcing
+1. Select Option **13** from the menu.
+2. Enter the target URL: `https://example.com`
+3. (Optional) Provide a custom wordlist path or press ENTER for the default list.
+4. Set the number of threads (e.g., `50`).
+5. Wait for the scan to finish and check `vluxgen_dir_report.txt`.
 
-🛠️ Quick Usage Examples
-🌐 Crawl Website
-Target URL        : https://example.com
-Depth             : 2
-Threads           : 10
-🔍 Find Parameters
-Target URL : https://example.com
-⚡ Port Scan
-Target : example.com
-🛡️ Header Audit Output
-vluxgen_header_report.txt
-vluxgen_header_report.json
-🔥 XSS Report
-vluxgen_xss_report.txt
-📂 Directory Report
-vluxgen_dir_report.txt
-🌎 Reverse IP Report
-vluxgen_reverse_ip.txt
+---
 
-📂 Output Files
-Tool	Output
-Wordlist	.txt
-Crawl	.txt
-Parameters	.txt
-XSS	.txt
-SQLi	.txt
-Headers	.txt + .json
-Redirect	.html
-Directory	.txt
-Reverse IP	.txt
+## 📊 Report Management
+Vulxgen automatically generates detailed reports for various scans:
 
-⚠️ Disclaimer
+- **Security Headers**: `vluxgen_header_report.json` / `.txt`
+- **XSS Analysis**: `vluxgen_xss_report.txt`
+- **Open Redirects**: `vluxgen_redirect_report.html`
+- **Directories**: `vluxgen_dir_report.txt`
+- **Reverse IP**: `vluxgen_reverse_ip.txt`
 
-🚨 This tool is for educational purposes only
+---
+
+## 👨‍💻 Author
+**Sriram Gopal (Cyber Pasanga)**
+- **GitHub**: [@cybersriram7](https://github.com/cybersriram7)
+- **LinkedIn**: [Sriram Gopal](https://www.linkedin.com/in/sriramgopal7)
+
+---
+
+## ⚠️ Disclaimer
+🚨 **Warning**: The developer assumes no liability and is not responsible for any misuse or damage caused by this program. Users are responsible for complying with all local, state, and federal laws.
