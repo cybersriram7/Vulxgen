@@ -1,4 +1,4 @@
-# 🛡️ VLUXGEN v3.0
+# 🛡️ VLUXGEN v1.0
 ### Professional CLI Security Learning Toolkit
 **Developed by Sriram (Cyber Pasanga)**
 
