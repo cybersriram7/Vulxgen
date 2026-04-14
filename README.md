@@ -38,11 +38,14 @@ It provides automation + recon + safe testing tools in a single interface.
 ⚙️ Installation
 1️⃣ Clone Repository
 git clone https://github.com/cybersriram7/Vulxgen.git
-cd vulxgen
-2️⃣ Install Requirements
+cd Vulxgen
+2️⃣ Install (Automated)
+chmod +x install.sh
+./install.sh
+3️⃣ Manual Install
 pip install -r requirements.txt
 ▶️ Run Tool
-python vluxgen.py
+python3 vluxgen.py
 
 📋 Menu
 1 → Wordlist Generator

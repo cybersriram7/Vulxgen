@@ -5,3 +5,5 @@ lxml
 colorama
 fake-useragent
 rich
+urllib3
+validators
