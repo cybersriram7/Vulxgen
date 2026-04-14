@@ -1,30 +1,19 @@
-#!/usr/bin/env python3
-# ==========================================
-# VLUXGEN v2.0
-# Professional CLI Security Learning Toolkit
-# ==========================================
-
 import itertools
 import string
 import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin, urlparse, parse_qs
 import sys
 import time
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin, urlparse
-from concurrent.futures import ThreadPoolExecutor
 import os
 import socket
-from concurrent.futures import ThreadPoolExecutor
 import threading
 import asyncio
 import aiohttp
 import re
+import json
+import random
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin, urlparse, parse_qs
-import random, string
+from urllib.parse import urljoin, urlparse, parse_qs, urlencode
+from concurrent.futures import ThreadPoolExecutor, as_completed
 # =========================
 # COLORS
 # =========================
@@ -49,7 +38,7 @@ def banner():
 │  ██  ██  ██      ██    ██  ██ ██  ██    ██ ██      ██  ██│
 │   ████   ███████  ██████  ██   ██  ██████  ███████ ██   █│
 │                                                          │
-│        VLUXGEN v2.0  |  Security Learning Toolkit        │
+│        VLUXGEN v3.0  |  Security Learning Toolkit        │
 │        Recon • Wordlist • Crawl • Safe Testing           |
 │                                                          |
 │                                -CYBER PASANGA (SRIRAM)   │
@@ -1722,30 +1711,113 @@ def open_redirect_master():
     print(GREEN + "[✓] Report saved → vluxgen_redirect_report.html\n" + RESET)
 
 
- # =====================================================
+# =====================================================
+# 📂 VLUXGEN DIRECTORY BRUTE FORCER
+# =====================================================
+def directory_bruteforcer():
+    print(MAGENTA + "\n[ VLUXGEN DIRECTORY BRUTE FORCER ]\n" + RESET)
+
+    target = input("Target URL (https://example.com): ").strip()
+    if not target.startswith(("http://", "https://")):
+        target = "http://" + target
+
+    wordlist_path = input("Wordlist path (ENTER for default): ").strip()
+    threads = int(input("Threads (default 50): ") or 50)
+    
+    # Internal small wordlist if none provided
+    if not wordlist_path:
+        words = ["admin", "login", "config", "backup", "api", "v1", "v2", "dev", "test", "staging", "uploads", "images", "css", "js", "phpmyadmin", "wp-admin", "robots.txt", ".env", ".git", "server-status", "dashboard", "portal"]
+    else:
+        try:
+            with open(wordlist_path, "r") as f:
+                words = [line.strip() for line in f if line.strip()]
+        except FileNotFoundError:
+            print(RED + "[!] Wordlist not found! Using default..." + RESET)
+            words = ["admin", "login", "config", "backup", "api", "v1", "v2", "dev", "test", "staging", "uploads", "images", "css", "js", "phpmyadmin", "wp-admin", "robots.txt", ".env", ".git", "server-status", "dashboard", "portal"]
+
+    found = []
+    lock = threading.Lock()
+
+    print(CYAN + f"\n[+] Brute forcing {len(words)} directories on {target}...\n" + RESET)
+
+    def check_dir(word):
+        url = urljoin(target, word)
+        try:
+            r = requests.get(url, timeout=5, allow_redirects=False)
+            if r.status_code in [200, 301, 302, 403]:
+                with lock:
+                    color = GREEN if r.status_code == 200 else YELLOW
+                    print(color + f"[{r.status_code}] {url}" + RESET)
+                    found.append(f"[{r.status_code}] {url}")
+        except:
+            pass
+
+    with ThreadPoolExecutor(max_workers=threads) as executor:
+        executor.map(check_dir, words)
+
+    # Save report
+    with open("vluxgen_dir_report.txt", "w") as f:
+        f.write("\n".join(found))
+
+    print(GREEN + f"\n[✓] Finished. Found {len(found)} directories." + RESET)
+    print(CYAN + "[✓] Saved -> vluxgen_dir_report.txt\n" + RESET)
+
+
+# =====================================================
+# 🌎 VLUXGEN REVERSE IP LOOKUP
+# =====================================================
+def reverse_ip_lookup():
+    print(MAGENTA + "\n[ VLUXGEN REVERSE IP LOOKUP ]\n" + RESET)
+
+    target = input("Target Domain or IP: ").strip()
+    if not target:
+        print(RED + "[!] Target required!" + RESET)
+        return
+
+    loading("Fetching data from HackerTarget")
+
+    try:
+        url = f"https://api.hackertarget.com/reverseiplookup/?q={target}"
+        r = requests.get(url, timeout=10)
+        
+        if "error" in r.text.lower() or "not found" in r.text.lower():
+            print(RED + "[!] No results found or API limit reached." + RESET)
+        else:
+            domains = r.text.strip().split("\n")
+            print(GREEN + f"\n[✓] Found {len(domains)} domains on this IP:\n" + RESET)
+            for d in domains:
+                print(f"  - {d}")
+            
+            with open("vluxgen_reverse_ip.txt", "w") as f:
+                f.write(r.text)
+            print(CYAN + f"\n[✓] Saved -> vluxgen_reverse_ip.txt\n" + RESET)
+    except Exception as e:
+        print(RED + f"[!] Request failed: {e}" + RESET)
+
+
+# =====================================================
 # MAIN MENU
 # =====================================================
 def menu():
     while True:
         print(CYAN + """   
-              
-
-              
-┌─────────────────────────────┐
-│ 1 → Wordlist Generator      │
-│ 2 → Website Crawler         │
-│ 3 → Parameter Finder        │
-│ 4 → Google Dork Helper      │
-│ 5 → XSS Payload Generator   │
-│ 6 → SQLI Payload Generator  │
-| 7 → Subdomain Finder        |
-| 8 → WAF Detector            |
-| 9 → Port Scanner            | 
-| 10 →Security Header Auditor |
-| 11 → Master XSS Analyzer    |  
-| 12 → Open Redirect Scanner  |
-│ 0 → Exit                    │
-└─────────────────────────────┘
+┌──────────────────────────────┐
+│ 1  → Wordlist Generator      │
+│ 2  → Website Crawler         │
+│ 3  → Parameter Finder        │
+│ 4  → Google Dork Helper      │
+│ 5  → XSS Payload Generator   │
+│ 6  → SQLI Payload Generator  │
+│ 7  → Subdomain Finder        │
+│ 8  → WAF Detector            │
+│ 9  → Port Scanner            │ 
+│ 10 → Security Header Auditor │
+│ 11 → Master XSS Analyzer     │  
+│ 12 → Open Redirect Scanner   │
+│ 13 → Directory Brute Forcer  │
+│ 14 → Reverse IP Lookup       │
+│ 0  → Exit                    │
+└──────────────────────────────┘
 """ + RESET)
 
         choice = input("vluxgen > ")
@@ -1771,9 +1843,13 @@ def menu():
         elif choice == "10":
             header_auditor()
         elif choice == "11":
-         xss_master_scanner()
+             xss_master_scanner()
         elif choice == "12":
-          open_redirect_master()
+            open_redirect_master()
+        elif choice == "13":
+            directory_bruteforcer()
+        elif choice == "14":
+            reverse_ip_lookup()
         elif choice == "0":
             sys.exit()
         else:

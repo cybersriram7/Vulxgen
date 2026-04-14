@@ -1,4 +1,4 @@
-VLUXGEN v2.0
+VLUXGEN v3.0
 
 Professional CLI Security Learning Toolkit
 
@@ -11,7 +11,7 @@ Professional CLI Security Learning Toolkit
 
 📖 Overview
 
-VLUXGEN v2.0 is a powerful all-in-one CLI toolkit for:
+VLUXGEN v3.0 is a powerful all-in-one CLI toolkit for:
 
 Ethical Hackers 🧑‍💻
 Bug Bounty Hunters 🐞
@@ -30,13 +30,10 @@ It provides automation + recon + safe testing tools in a single interface.
 🛡️ WAF Detector
 ⚡ Port Scanner (Nmap-style)
 🔒 Security Header Auditor
-🔥 XSS Reflection Analyzer
+🔥 Master XSS Analyzer
 🔁 Open Redirect Scanner
-
-
-
-
-
+📂 Directory Brute Forcer [NEW]
+🌎 Reverse IP Lookup [NEW]
 
 ⚙️ Installation
 1️⃣ Clone Repository
@@ -46,13 +43,6 @@ cd vulxgen
 pip install -r requirements.txt
 ▶️ Run Tool
 python vluxgen.py
-
-
-
-
-
-
-
 
 📋 Menu
 1 → Wordlist Generator
@@ -67,7 +57,10 @@ python vluxgen.py
 10 → Security Header Auditor
 11 → Master XSS Analyzer
 12 → Open Redirect Scanner
+13 → Directory Brute Forcer
+14 → Reverse IP Lookup
 0 → Exit
+
 🛠️ Quick Usage Examples
 🌐 Crawl Website
 Target URL        : https://example.com
@@ -82,8 +75,11 @@ vluxgen_header_report.txt
 vluxgen_header_report.json
 🔥 XSS Report
 vluxgen_xss_report.txt
-🔁 Redirect Report
-vluxgen_redirect_report.html
+📂 Directory Report
+vluxgen_dir_report.txt
+🌎 Reverse IP Report
+vluxgen_reverse_ip.txt
+
 📂 Output Files
 Tool	Output
 Wordlist	.txt
@@ -93,6 +89,9 @@ XSS	.txt
 SQLi	.txt
 Headers	.txt + .json
 Redirect	.html
+Directory	.txt
+Reverse IP	.txt
+
 ⚠️ Disclaimer
 
 🚨 This tool is for educational purposes only
